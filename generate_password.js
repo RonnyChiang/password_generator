@@ -10,8 +10,8 @@ function generatePassword() {
   // dummy data of req.body
   const options = {
     length: 12,
-    // lowercase: 'on',
-    // uppercase: 'on',
+    lowercase: 'on',
+    uppercase: 'on',
     numbers: 'on',
     excludeCharacters: '12345670A'
   }
@@ -44,13 +44,20 @@ function generatePassword() {
     )
   }
 
-  console.log('collection', collection)
-
   // start generating password
+  let password = ''
+  for (let i = 0; i < options.length; i++) {
+    password += creatRandomPassword(collection)
+  }
 
   // return the generated password
-  console.log('This function will generate password')
+  console.log('password', password)
 }
 
+// define creatRandomPassword function
+function creatRandomPassword(collection) {
+  const randomIndex = Math.floor(Math.random() * collection.length)
+  return collection[randomIndex]
+}
 // invoke generatePassword function 
 generatePassword()
